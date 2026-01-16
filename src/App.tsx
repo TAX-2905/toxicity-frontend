@@ -16,11 +16,14 @@ export default function App() {
     setLoading(true);
     setResult(null);
 
-    const res = await fetch("http://127.0.0.1:8000/predict", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ text }),
-    });
+const res = await fetch(
+  `${import.meta.env.VITE_API_URL}/predict`,
+  {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ text }),
+  }
+);
 
     const data: Result = await res.json();
     setResult(data);
